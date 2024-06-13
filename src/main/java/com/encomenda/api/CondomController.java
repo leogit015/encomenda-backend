@@ -37,7 +37,7 @@ public class CondomController {
         return ResponseEntity.created(uri).body(condomResponseDTO);
     }
 
-    @PutMapping
+    @PutMapping(value = "/{id}")
     public ResponseEntity<CondomResponseDTO> update (@RequestBody CondomRequestDTO condomDTO,@PathVariable(name = "id") Long id ) {
         return ResponseEntity.ok().body(condomService.update(id,condomDTO));
     }
