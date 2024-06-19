@@ -20,6 +20,7 @@ public class CondomMapper {
                 .bairro(condomDTO.getBairro())
                 .cep(condomDTO.getCep())
                 .cidade(condomDTO.getCidade())
+                .estado(condomDTO.getEstado())
                 .build();
 
     }
@@ -40,5 +41,6 @@ public class CondomMapper {
         condom.setBairro(condomDTO.getBairro());
         condom.setCep(condomDTO.getCep());
         condom.setCidade(condomDTO.getCidade());
+        condom.setEstado(condomDTO.getEstado());
     }
 }

@@ -13,6 +13,7 @@ public class CondomResponseDTO {
     private String bairro;
     private String cep;
     private String cidade;
+    private String estado;
 
     public CondomResponseDTO(Condom condom){
         this.id = condom.getId();
@@ -22,5 +23,6 @@ public class CondomResponseDTO {
         this.bairro = condom.getBairro();
         this.cep = condom.getCep();
         this.cidade = condom.getCidade();
+        this.estado = condom.getEstado();
     }
 }
