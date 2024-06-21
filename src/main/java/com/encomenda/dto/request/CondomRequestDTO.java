@@ -12,5 +12,5 @@ public class CondomRequestDTO {
     private String bairro;
     private String cep;
     private String cidade;
-    private String Estado;
+    private String estado;
 }

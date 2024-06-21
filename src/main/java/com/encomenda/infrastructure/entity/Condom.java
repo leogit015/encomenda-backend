@@ -30,8 +30,10 @@ public class Condom {
     private String estado;
 
     @Builder
-    public Condom(String nome, String rua, Long numero, String bairro, String cep, String cidade, String estado) {
+
+    public Condom(String nome, Long id, String rua, Long numero, String bairro, String cep, String cidade, String estado) {
         this.nome = nome;
+        this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
