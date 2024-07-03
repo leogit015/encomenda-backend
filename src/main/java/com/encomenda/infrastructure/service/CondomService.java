@@ -15,7 +15,7 @@ public interface CondomService {
 
     CondomResponseDTO register(CondomRequestDTO condomDTO);
 
-    CondomResponseDTO update(Long id, CondomRequestDTO personDTO);
+    CondomResponseDTO update(Long id, CondomRequestDTO condomDTO);
 
     String delete(Long id);
 }
