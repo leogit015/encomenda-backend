@@ -12,15 +12,14 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value ="/{condominio}")
+@RequestMapping("/condominios")
 @RequiredArgsConstructor
 public class CondomController {
 
-    public  final CondomService condomService;
+    private final CondomService condomService;
 
-
-    @GetMapping(value ="/{id}")
-    public ResponseEntity<CondomResponseDTO> findById(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<CondomResponseDTO> findById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(condomService.findById(id));
     }
 
@@ -30,21 +29,20 @@ public class CondomController {
     }
 
     @PostMapping
-    public ResponseEntity<CondomResponseDTO> register (@RequestBody  CondomRequestDTO condomRequestDTO, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<CondomResponseDTO> register(@RequestBody CondomRequestDTO condomRequestDTO, UriComponentsBuilder uriBuilder) {
         CondomResponseDTO condomResponseDTO = condomService.register(condomRequestDTO);
 
-        URI uri = uriBuilder.path("/condominio/{id}").buildAndExpand(condomResponseDTO.getId()).toUri();
+        URI uri = uriBuilder.path("/condominios/{id}").buildAndExpand(condomResponseDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(condomResponseDTO);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<CondomResponseDTO> update (@RequestBody CondomRequestDTO condomDTO,@PathVariable(name = "id") Long id ) {
-        return ResponseEntity.ok().body(condomService.update(id,condomDTO));
+    @PutMapping("/{id}")
+    public ResponseEntity<CondomResponseDTO> update(@RequestBody CondomRequestDTO condomDTO, @PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok().body(condomService.update(id, condomDTO));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok().body(condomService.delete(id));
     }
-
 }

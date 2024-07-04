@@ -13,15 +13,14 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/{morador}")
+@RequestMapping("/moradores")
 @RequiredArgsConstructor
 public class MoradorController {
 
-    public  final MoradorService moradorService;
+    private final MoradorService moradorService;
 
-
-    @GetMapping(value ="/{id}")
-    public ResponseEntity<MoradorResponseDTO> findById(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<MoradorResponseDTO> findById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(moradorService.findById(id));
     }
 
@@ -31,23 +30,22 @@ public class MoradorController {
     }
 
     @PostMapping
-    public ResponseEntity<MoradorResponseDTO> register (@RequestBody MoradorRequestDTO moradorRequestDTO, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<MoradorResponseDTO> register(@RequestBody MoradorRequestDTO moradorRequestDTO, UriComponentsBuilder uriBuilder) {
         MoradorResponseDTO moradorResponseDTO = moradorService.register(moradorRequestDTO);
 
-        URI uri = uriBuilder.path("/morador/{id}").buildAndExpand(moradorResponseDTO.getId()).toUri();
+        URI uri = uriBuilder.path("/moradores/{id}").buildAndExpand(moradorResponseDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(moradorResponseDTO);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<MoradorResponseDTO> update (@RequestBody MoradorRequestDTO moradorDTO, @PathVariable(name = "id") Long id ) {
-        return ResponseEntity.ok().body(moradorService.update(id,moradorDTO));
+    @PutMapping("/{id}")
+    public ResponseEntity<MoradorResponseDTO> update(@RequestBody MoradorRequestDTO moradorDTO, @PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok().body(moradorService.update(id, moradorDTO));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok().body(moradorService.delete(id));
     }
-
 }
 
 
