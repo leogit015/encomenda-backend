@@ -9,7 +9,7 @@ public class MoradorResponseDTO {
 
     private Long id;
     private String nome;
-    private Long telefone;
+    private String telefone;
     private Integer bloco;
     private Integer apartamento;
 

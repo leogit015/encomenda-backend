@@ -15,7 +15,7 @@ public class MoradorMapper {
     public Morador toMorador(MoradorRequestDTO moradorDTO){
         return Morador.builder()
                 .nome(moradorDTO.getNome())
-                .telefone(moradorDTO.getTelefone())
+                .telefone(String.valueOf(moradorDTO.getTelefone()))
                 .bloco(moradorDTO.getBloco())
                 .apartamento(moradorDTO.getApartamento())
                 .build();
@@ -30,7 +30,7 @@ public class MoradorMapper {
 
     public void updateMoradorData(Morador morador, MoradorRequestDTO moradorDTO){
         morador.setNome(moradorDTO.getNome());
-        morador.setTelefone(moradorDTO.getTelefone());
+        morador.setTelefone(String.valueOf(moradorDTO.getTelefone()));
         morador.setBloco(moradorDTO.getBloco());
         morador.setApartamento(moradorDTO.getApartamento());
     }

@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Morador {
+public class Morador  extends Pessoa{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +18,14 @@ public class Morador {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String nome;
-    private Long telefone;
+
     private Integer bloco;
     private Integer apartamento;
 
     @Builder
 
-    public Morador( String nome, Long telefone, Integer bloco, Integer apartamento) {
-        this.nome = nome;
-        this.telefone = telefone;
+    public Morador( String nome, String telefone, Integer bloco, Integer apartamento) {
+        super(nome,telefone);
         this.bloco = bloco;
         this.apartamento = apartamento;
     }
