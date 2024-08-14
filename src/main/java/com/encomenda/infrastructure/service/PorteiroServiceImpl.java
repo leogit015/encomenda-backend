@@ -1,15 +1,18 @@
 package com.encomenda.infrastructure.service;
 
-
 import com.encomenda.dto.request.PorteiroRequestDTO;
 import com.encomenda.dto.response.PorteiroResponseDTO;
+import com.encomenda.infrastructure.entity.Condom;
 import com.encomenda.infrastructure.entity.Porteiro;
+import com.encomenda.infrastructure.repository.CondomRepository;
 import com.encomenda.infrastructure.repository.PorteiroRepository;
 import com.encomenda.util.PorteiroMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +20,12 @@ public class PorteiroServiceImpl implements PorteiroService {
 
     private final PorteiroRepository porteiroRepository;
     private final PorteiroMapper porteiroMapper;
+
+    @Autowired
+    private CondomRepository condomRepository;
+
+    @Autowired
+    private CondomService condomService;
 
     @Override
     public PorteiroResponseDTO findById(Long id) {
@@ -31,10 +40,20 @@ public class PorteiroServiceImpl implements PorteiroService {
 
     @Override
     public PorteiroResponseDTO register(PorteiroRequestDTO porteiroDTO) {
+        // Mapeia o DTO para a entidade Porteiro
         Porteiro porteiro = porteiroMapper.toPorteiro(porteiroDTO);
+
+        // Busca pelo condomínio pelo nome
+        Optional<Condom> existingCondom = condomRepository.findFirstByNomeCondominio(porteiroDTO.getCondominio());
+        if(existingCondom.isEmpty()) throw new RuntimeException("Condominio não encontrado");
+        Condom condom = existingCondom.get();
+        porteiro.setCondominio(condom);
+
+
         Porteiro savedPorteiro = porteiroRepository.save(porteiro);
         return porteiroMapper.toPorteiroDTO(savedPorteiro);
     }
+
 
     @Override
     public PorteiroResponseDTO update(Long id, PorteiroRequestDTO porteiroDTO) {
@@ -54,6 +73,4 @@ public class PorteiroServiceImpl implements PorteiroService {
         return porteiroRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Porteiro não encontrado com o ID: " + id));
     }
-
-
 }

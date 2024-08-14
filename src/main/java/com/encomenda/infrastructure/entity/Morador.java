@@ -18,8 +18,10 @@ public class Morador  extends Pessoa{
     @Setter(AccessLevel.NONE)
     private Long id;
 
-
+    @Column(name = "bloco", nullable = false)
     private Integer bloco;
+
+    @Column(name = "apartamento", nullable = false)
     private Integer apartamento;
 
     @Builder

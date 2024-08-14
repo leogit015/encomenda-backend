@@ -17,7 +17,7 @@ public class CondomResponseDTO {
 
     public CondomResponseDTO(Condom condom){
         this.id = condom.getId();
-        this.nome = condom.getNome();
+        this.nome = condom.getNomeCondominio();
         this.rua = condom.getRua();
         this.numero = condom.getNumero();
         this.bairro = condom.getBairro();

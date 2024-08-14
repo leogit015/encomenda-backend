@@ -3,6 +3,7 @@ package com.encomenda.util;
 
 import com.encomenda.dto.request.PorteiroRequestDTO;
 import com.encomenda.dto.response.PorteiroResponseDTO;
+import com.encomenda.infrastructure.entity.Condom;
 import com.encomenda.infrastructure.entity.Porteiro;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -15,7 +16,7 @@ public class PorteiroMapper {
         return Porteiro.builder()
                 .nome(porteiroDTO.getNome())
                 .telefone(String.valueOf(porteiroDTO.getTelefone()))
-                .condominio(porteiroDTO.getCondominio())
+
                 .build();
     }
 
@@ -30,6 +31,7 @@ public class PorteiroMapper {
     public void updatePorteiroData(Porteiro porteiro, PorteiroRequestDTO porteiroDTO) {
         porteiro.setNome(porteiroDTO.getNome());
         porteiro.setTelefone(String.valueOf(porteiroDTO.getTelefone()));
-        porteiro.setCondominio(porteiroDTO.getCondominio());
+
+
     }
 }

@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PorteiroController {
 
-
     private final PorteiroService porteiroService;
 
     @GetMapping("/{id}")
@@ -33,11 +32,9 @@ public class PorteiroController {
     }
 
     @PostMapping
-    public ResponseEntity<PorteiroResponseDTO> register(@RequestBody PorteiroRequestDTO porteiroRequestDTO, UriComponentsBuilder uriBuilder) {
-        PorteiroResponseDTO porteiroResponseDTO = porteiroService.register(porteiroRequestDTO);
-
-        URI uri = uriBuilder.path("/porteiros/{id}").buildAndExpand(porteiroResponseDTO.getId()).toUri();
-        return ResponseEntity.created(uri).body(porteiroResponseDTO);
+    public ResponseEntity<String> register(@RequestBody PorteiroRequestDTO porteiroRequestDTO) {
+        PorteiroResponseDTO newPorteiro = porteiroService.register(porteiroRequestDTO);
+        return ResponseEntity.ok( "Porteiro criado com sucesso");
     }
 
     @PutMapping("/{id}")
@@ -50,5 +47,4 @@ public class PorteiroController {
         return ResponseEntity.ok().body(porteiroService.delete(id));
     }
 }
-
 

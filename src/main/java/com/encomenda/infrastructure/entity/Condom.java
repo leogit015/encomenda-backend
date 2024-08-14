@@ -20,19 +20,26 @@ public class Condom {
     private Long id;
 
 
+    @Column(name = "nomeCondominio" , unique = true)
+    private String nomeCondominio;
 
-    private String nome;
+    @Column(name = "rua", nullable = false)
     private String rua;
+    @Column(name = "numero", nullable = false)
     private Long numero;
+    @Column(name = "bairro", nullable = false)
     private String bairro;
+    @Column(name = "cep", nullable = false)
     private String cep;
+    @Column(name = "cidade", nullable = false)
     private String cidade;
+    @Column(name = "estado", nullable = false)
     private String estado;
 
     @Builder
 
     public Condom(String nome, Long id, String rua, Long numero, String bairro, String cep, String cidade, String estado) {
-        this.nome = nome;
+        this.nomeCondominio = nome;
         this.id = id;
         this.rua = rua;
         this.numero = numero;
@@ -40,5 +47,11 @@ public class Condom {
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
+    }
+
+    public Condom(String nome) {
+    }
+
+    public Condom(String nomeCondominio, String bairro, String cep, String cidade, String estado, Long numero, String rua) {
     }
 }

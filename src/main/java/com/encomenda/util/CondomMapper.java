@@ -35,7 +35,7 @@ public class CondomMapper {
     }
 
     public void updateCondomData(Condom condom, CondomRequestDTO condomDTO){
-        condom.setNome(condomDTO.getNome());
+        condom.setNomeCondominio(condomDTO.getNome());
         condom.setRua(condomDTO.getRua());
         condom.setNumero(condomDTO.getNumero());
         condom.setBairro(condomDTO.getBairro());

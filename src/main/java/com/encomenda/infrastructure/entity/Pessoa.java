@@ -18,6 +18,7 @@ public abstract class Pessoa {
     @Setter(AccessLevel.NONE)
     private Long id;
 
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @Column(name = "telefone", nullable = false, unique = true)
