@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -49,6 +50,12 @@ public class CondomServiceImpl implements CondomService {
     public String delete(Long id) {
         condomRepository.deleteById(id);
         return "Condominio de id: " +id+ "deletado";
+    }
+
+    @Override
+    public Condom getCondomByName(String condominioNome) {
+        Optional<Condom> existingCondom = condomRepository.findFirstByNomeCondominio(condominioNome);
+        return existingCondom.orElseThrow(() -> new RuntimeException("Condominio não encontrado"));
     }
 
     private Condom returnCondominioEntity(Long id) {

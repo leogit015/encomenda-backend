@@ -10,13 +10,13 @@ public class PorteiroResponseDTO {
     private Long id;
     private String nome;
     private String telefone;
-    private Long condominioId;
+    private String condominioNome;
 
     public PorteiroResponseDTO(Porteiro porteiro) {
         this.id = porteiro.getId();
         this.nome = porteiro.getNome();
         this.telefone = porteiro.getTelefone();
-        this.condominioId = porteiro.getCondominio().getId();
+        this.condominioNome = porteiro.getCondominio().getNomeCondominio();
     }
 
 }

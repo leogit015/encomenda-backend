@@ -21,8 +21,6 @@ public class PorteiroServiceImpl implements PorteiroService {
     private final PorteiroRepository porteiroRepository;
     private final PorteiroMapper porteiroMapper;
 
-    @Autowired
-    private CondomRepository condomRepository;
 
     @Autowired
     private CondomService condomService;
@@ -44,9 +42,8 @@ public class PorteiroServiceImpl implements PorteiroService {
         Porteiro porteiro = porteiroMapper.toPorteiro(porteiroDTO);
 
         // Busca pelo condomínio pelo nome
-        Optional<Condom> existingCondom = condomRepository.findFirstByNomeCondominio(porteiroDTO.getCondominio());
-        if(existingCondom.isEmpty()) throw new RuntimeException("Condominio não encontrado");
-        Condom condom = existingCondom.get();
+
+        Condom condom = condomService.getCondomByName(porteiroDTO.getCondominio());
         porteiro.setCondominio(condom);
 
 
@@ -59,6 +56,8 @@ public class PorteiroServiceImpl implements PorteiroService {
     public PorteiroResponseDTO update(Long id, PorteiroRequestDTO porteiroDTO) {
         Porteiro porteiro = returnPorteiroEntity(id);
         porteiroMapper.updatePorteiroData(porteiro, porteiroDTO);
+        Condom condom = condomService.getCondomByName(porteiroDTO.getCondominio());
+        porteiro.setCondominio(condom);
         Porteiro updatedPorteiro = porteiroRepository.save(porteiro);
         return porteiroMapper.toPorteiroDTO(updatedPorteiro);
     }
