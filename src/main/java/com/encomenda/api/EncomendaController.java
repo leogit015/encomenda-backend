@@ -28,6 +28,12 @@ public class EncomendaController {
     @Autowired
     EncomendaService encomendaService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Encomenda> getEncomendaById(@PathVariable Long id) {
+        Encomenda encomenda = encomendaService.findById(id);
+        return ResponseEntity.ok(encomenda);
+    }
+
     @GetMapping
     public List<EncomendaResponseDTO> findAll (){
         return encomendaService.findAll();
