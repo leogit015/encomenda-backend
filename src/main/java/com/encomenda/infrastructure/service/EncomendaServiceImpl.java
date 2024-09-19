@@ -46,4 +46,15 @@ public class EncomendaServiceImpl implements EncomendaService{
         return EncomendaResponseDTO.fromEntity(savedEncomenda);
     }
 
+    public void deleteById(Long id) {
+        Optional<Encomenda> encomenda = encomendaRepository.findById(id);
+        if (encomenda.isPresent()) {
+            encomendaRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Encomenda com ID " + id + " não encontrada.");
+        }
+    }
+
+
+
 }

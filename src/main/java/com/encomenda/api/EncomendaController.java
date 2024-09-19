@@ -45,5 +45,10 @@ public class EncomendaController {
         return new ResponseEntity<>("Encomenda cadastrada com sucesso", HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEncomendaById(@PathVariable Long id) {
+        encomendaService.deleteById(id);
+        return ResponseEntity.noContent().build(); // Retorna status 204 No Content
+    }
 
 }

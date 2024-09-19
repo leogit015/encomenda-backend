@@ -13,4 +13,6 @@ public interface EncomendaService {
     List<EncomendaResponseDTO> findAll();
 
     EncomendaResponseDTO register(EncomendaRequestDTO encomendaDTO);
+
+    void deleteById(Long id);
 }
