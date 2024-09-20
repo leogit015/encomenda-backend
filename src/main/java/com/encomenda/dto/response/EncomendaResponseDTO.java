@@ -22,4 +22,5 @@ public record EncomendaResponseDTO(
                 encomenda.getMorador()
         );
     }
+
 }

@@ -56,5 +56,20 @@ public class EncomendaServiceImpl implements EncomendaService{
     }
 
 
+    public Encomenda update(Long id, EncomendaResponseDTO encomendaResponseDTO) {
+
+        Encomenda encomenda = encomendaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Encomenda não encontrada para o ID: " + id));
+
+        encomenda.setDescricao(encomendaResponseDTO.descricao());
+        encomenda.setDataDeRecebimento(encomendaResponseDTO.dataDeRecebimento());
+        encomenda.setDataDeEntrega(encomendaResponseDTO.dataDeEntrega());
+        encomenda.setPorteiro(encomendaResponseDTO.porteiro());
+        encomenda.setMorador(encomendaResponseDTO.morador());
+
+
+        return encomendaRepository.save(encomenda);
+    }
+
 
 }

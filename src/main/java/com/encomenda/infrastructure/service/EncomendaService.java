@@ -15,4 +15,6 @@ public interface EncomendaService {
     EncomendaResponseDTO register(EncomendaRequestDTO encomendaDTO);
 
     void deleteById(Long id);
+
+    Encomenda update(Long id, EncomendaResponseDTO encomendaResponseDTO);
 }
